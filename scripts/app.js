@@ -1,5 +1,8 @@
 import { fetchRecipesByIngredients } from "./api.js";
 import { fetchUnsplashImage } from "./unsplash.js";
+import { loadHeaderFooter } from "./loadHeaderFooter.js";
+
+loadHeaderFooter();
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("ingredientForm");
@@ -33,20 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
       card.innerHTML = `
         <img src="${imageUrl}" alt="${recipe.title}" />
         <h3>${recipe.title}</h3>
-        <a href="recipe.html?id=${recipe.id}">View Details</a>
-        <button class="fav-btn" data-id="${recipe.id}" data-title="${recipe.title}" data-img="${recipe.image}">❤️ Add to Favorites</button>
+        <a href="recipe.html?id=${recipe.id}" class="details-btn">View Details</a>
       `;
-
-      const favButton = card.querySelector(".fav-btn");
-      favButton.addEventListener("click", () => {
-        const favRecipe = {
-          id: recipe.id,
-          title: recipe.title,
-          image: recipe.image
-        };
-
-        addToFavorites(favRecipe);
-      });
 
       resultsSection.appendChild(card);
     }
