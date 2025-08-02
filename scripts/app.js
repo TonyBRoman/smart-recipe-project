@@ -27,11 +27,13 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    for (const recipe of recipes) {
+    
+    recipes.forEach(async (recipe, index) => {
       const imageUrl = await fetchUnsplashImage(recipe.title) || recipe.image;
 
       const card = document.createElement("div");
       card.classList.add("recipe-card");
+      card.style.animationDelay = `${index * 100}ms`;
 
       card.innerHTML = `
         <img src="${imageUrl}" alt="${recipe.title}" />
@@ -40,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
 
       resultsSection.appendChild(card);
-    }
+    });
   }
 
   function addToFavorites(recipe) {
