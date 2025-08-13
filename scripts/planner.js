@@ -61,7 +61,7 @@ async function createRecipeCard(recipe, isFavorite = false, index = 0, assignedD
         createRecipeCard(recipe, false, 0, selectedDay).then(card => {
           column.appendChild(card);
           saveToPlan(selectedDay, recipe);
-          showToast(`Added "${recipe.title}" to ${selectedDay}`, "success"); // ✅ Toast al agregar
+          showToast(`Added "${recipe.title}" to ${selectedDay}`, "success"); 
         });
       }
     });
@@ -71,7 +71,7 @@ async function createRecipeCard(recipe, isFavorite = false, index = 0, assignedD
     removeBtn.addEventListener("click", () => {
       removeFromPlan(recipe);
       card.remove();
-      showToast(`Removed "${recipe.title}" from all days`, "error"); // ✅ Toast al eliminar
+      showToast(`Removed "${recipe.title}" from all days`, "error"); 
     });
 
   } else {
@@ -80,7 +80,7 @@ async function createRecipeCard(recipe, isFavorite = false, index = 0, assignedD
       if (day) {
         removeFromDayPlan(day, recipe.id);
         card.remove();
-        showToast(`Removed "${recipe.title}" from ${day}`, "error"); // ✅ Toast al eliminar de un día
+        showToast(`Removed "${recipe.title}" from ${day}`, "error"); 
       }
     });
   }
