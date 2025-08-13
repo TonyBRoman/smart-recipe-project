@@ -553,4 +553,38 @@ button:hover, .details-btn:hover, #favButton:hover {
   padding: 0.5rem;
 }
 
+/* Toast notification */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #2E8B57;
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: slideIn 0.4s forwards;
+  z-index: 9999;
+}
+
+.toast.error {
+  background: #d9534f;
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
 

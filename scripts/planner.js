@@ -1,6 +1,7 @@
 import { fetchUnsplashImage } from "./unsplash.js";
 import { loadHeaderFooter } from "./loadHeaderFooter.js";
-import { createAddToDayButton } from "./addToDayButton.js"; 
+import { createAddToDayButton } from "./addToDayButton.js";
+import { showToast } from "./toast.js"; 
 
 loadHeaderFooter();
 
@@ -53,13 +54,14 @@ async function createRecipeCard(recipe, isFavorite = false, index = 0, assignedD
   const removeBtn = card.querySelector(".remove-btn");
 
   if (isFavorite) {
-    //Import the addToDayButton.js function
+    // Import the addToDayButton.js function
     const addToDayBtn = createAddToDayButton(recipe, (recipe, selectedDay) => {
       const column = document.querySelector(`.day-column[data-day="${selectedDay}"]`);
       if (column) {
         createRecipeCard(recipe, false, 0, selectedDay).then(card => {
           column.appendChild(card);
           saveToPlan(selectedDay, recipe);
+          showToast(`Added "${recipe.title}" to ${selectedDay}`, "success"); // ✅ Toast al agregar
         });
       }
     });
@@ -69,6 +71,7 @@ async function createRecipeCard(recipe, isFavorite = false, index = 0, assignedD
     removeBtn.addEventListener("click", () => {
       removeFromPlan(recipe);
       card.remove();
+      showToast(`Removed "${recipe.title}" from all days`, "error"); // ✅ Toast al eliminar
     });
 
   } else {
@@ -77,6 +80,7 @@ async function createRecipeCard(recipe, isFavorite = false, index = 0, assignedD
       if (day) {
         removeFromDayPlan(day, recipe.id);
         card.remove();
+        showToast(`Removed "${recipe.title}" from ${day}`, "error"); // ✅ Toast al eliminar de un día
       }
     });
   }
@@ -122,6 +126,7 @@ if (clearBtn) {
       document.querySelectorAll(".day-column").forEach(column => {
         column.querySelectorAll(".recipe-card").forEach(card => card.remove());
       });
+      showToast("All planned meals cleared", "error"); 
     }
   });
 }
