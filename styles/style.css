@@ -61,7 +61,7 @@ body {
 .main-header nav a::after {
   content: "";
   position: absolute;
-  bottom: -4x;
+  bottom: -4px;
   left: 0;
   width: 0;
   height: 2px;
