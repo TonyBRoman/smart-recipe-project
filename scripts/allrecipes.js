@@ -6,10 +6,9 @@ loadHeaderFooter();
 const API_KEY = "ffe5303e839d4e03834efa15bb49de01";
 const recipesContainer = document.getElementById("recipesContainer");
 
-
 async function getAllRecipes() {
   try {
-    const res = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=20`);
+    const res = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=20&addRecipeInformation=true`);
     if (!res.ok) throw new Error("Error fetching recipes");
 
     const data = await res.json();
@@ -28,14 +27,16 @@ async function renderRecipes(recipes) {
 
     const card = document.createElement("div");
     card.classList.add("recipe-card");
+
     card.innerHTML = `
-      <a href="recipes.html?id=${recipe.id}">
-        <img src="${imageUrl}" alt="${recipe.title}">
-        <h3>${recipe.title}</h3>
-      </a>
+      <img src="${imageUrl}" alt="${recipe.title}" />
+      <h3>${recipe.title}</h3>
+      <a href="recipe.html?id=${recipe.id}" class="details-btn">View Details</a>
     `;
+
     recipesContainer.appendChild(card);
   }
 }
 
 getAllRecipes();
+
