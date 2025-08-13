@@ -8,7 +8,7 @@ const recipesContainer = document.getElementById("recipesContainer");
 
 async function getAllRecipes() {
   try {
-    const res = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=20&addRecipeInformation=true`);
+    const res = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=40&addRecipeInformation=true`);
     if (!res.ok) throw new Error("Error fetching recipes");
 
     const data = await res.json();
