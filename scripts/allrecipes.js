@@ -31,7 +31,10 @@ async function renderRecipes(recipes) {
     card.innerHTML = `
       <img src="${imageUrl}" alt="${recipe.title}" />
       <h3>${recipe.title}</h3>
-      <a href="recipe.html?id=${recipe.id}" class="details-btn">View Details</ahild(card);
+      <a href="recipe.html?id=${recipe.id}" class="details-btn">View Details</a>
+    `;
+
+    recipesContainer.appendChild(card);
   }
 }
 
