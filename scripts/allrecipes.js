@@ -8,7 +8,7 @@ const recipesContainer = document.getElementById("recipesContainer");
 
 async function getAllRecipes() {
   try {
-    const res = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=40&addRecipeInformation=true`);
+    const res = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=25&addRecipeInformation=true`);
     if (!res.ok) throw new Error("Error fetching recipes");
 
     const data = await res.json();
@@ -31,10 +31,7 @@ async function renderRecipes(recipes) {
     card.innerHTML = `
       <img src="${imageUrl}" alt="${recipe.title}" />
       <h3>${recipe.title}</h3>
-      <a href="recipe.html?id=${recipe.id}" class="details-btn">View Details</a>
-    `;
-
-    recipesContainer.appendChild(card);
+      <a href="recipe.html?id=${recipe.id}" class="details-btn">View Details</ahild(card);
   }
 }
 
